@@ -18,4 +18,4 @@ RUN uv sync --frozen
 EXPOSE 8000
 
 # Run the server with uvicorn
-CMD ["uv", "run", "python", "-m", "server"]
+CMD ["uv", "run", "python", "-m", "server", "--host", "0.0.0.0", "--port", "8000", "--transport", "streamable-http"]
