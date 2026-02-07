@@ -1,4 +1,4 @@
-from .app import mcp
+from .app import run_mcp
 
 if __name__ == "__main__":
-    mcp.run(transport="streamable-http")
+    run_mcp()

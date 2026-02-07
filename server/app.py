@@ -13,7 +13,15 @@ logging.basicConfig(
 )
 logger = logging.getLogger("wikimed-mcp-server")
 
-mcp = FastMCP("WikiMed MCP Server")
+from argparse import ArgumentParser
+
+argument_parser = ArgumentParser(description="WikiMed MCP Server")
+argument_parser.add_argument("--host", type=str, default="0.0.0.0")
+argument_parser.add_argument("--port", type=int, default=8000)
+argument_parser.add_argument("--transport", type=str, default="streamable-http")
+args = argument_parser.parse_args()
+
+mcp = FastMCP("WikiMed MCP Server", host=args.host, port=args.port)
 
 client_configs = {}
 
@@ -269,3 +277,10 @@ async def search_patient(
         params["SocialID"] = social_id
 
     return await make_wikimed_request(params, client_id)
+
+
+def run_mcp():
+    mcp.run(transport=args.transport)
+
+
+__all__ = ["mcp", "run_mcp"]
