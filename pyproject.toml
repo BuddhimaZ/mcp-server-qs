@@ -4,5 +4,6 @@ version = "0.1.0"
 requires-python = ">=3.13"
 dependencies = [
     "mcp[cli,rich,ws]>=1.26.0",
+    "trio>=0.32.0",
     "xmltodict>=1.0.2",
 ]
